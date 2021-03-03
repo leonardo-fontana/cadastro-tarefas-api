@@ -1,8 +1,7 @@
 const { Router } = require('express');
 const {name, version} = require('../../package.json');
 
-const app = require('../server');
-const cursoRoutesV1 = require('../routes/v1/curso')
+const cursoRoutesV1 = require('./v1/curso')
 
 module.exports = (app) => {
     const router = Router();
