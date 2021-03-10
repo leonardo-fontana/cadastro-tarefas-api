@@ -26,11 +26,8 @@ const getAllTarefas= (req, res, next) => {
 }
 
 const getTarefaById = (req, res) => {
-    db.tarefa.findOne({
-      where: {
-        id: req.params.idtarefa
-      }
-    }).then((result) => {
+    db.tarefa.findByPk(req.params.id)
+     .then((result) => {
       res.status(200).send({});
 
     })
