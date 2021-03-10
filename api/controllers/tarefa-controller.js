@@ -16,7 +16,8 @@ const getAllTarefas= (req, res, next) => {
 
         return {
           id: item.id,
-          titulo: item.titulo
+          titulo: item.titulo,
+          data_inicio: item.data_inicio
         }
 
       }));
@@ -24,16 +25,18 @@ const getAllTarefas= (req, res, next) => {
     })
 }
 
-const getTarefa = (req, res, next) => {]
-    /*res.status(200).send([
-        {
-            id: 1,
-            name: 'teste mock'
-        }
-    ])*/
+const getTarefaById = (req, res) => {
+    db.tarefa.findOne({
+      where: {
+        id: req.params.idtarefa
+      }
+    }).then((result) => {
+      res.status(200).send({});
+
+    })
 }
 
 module.exports = {
     getAllTarefas,
-    getTarefa
+    getTarefaById
 }

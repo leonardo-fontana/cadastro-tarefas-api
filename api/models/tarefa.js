@@ -10,6 +10,7 @@ module.exports = (sequelize, DataTypes) => {
             allowNull: false
         },
         titulo: DataTypes.TEXT,
+        data_inicio: DataTypes.DATE,
         },
         {
             underscored: true,
@@ -17,5 +18,5 @@ module.exports = (sequelize, DataTypes) => {
             timestamps: false
         }
     );
-
-}
+        return tarefas;
+};

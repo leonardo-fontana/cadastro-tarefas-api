@@ -6,9 +6,9 @@ module.exports = (router) => {
         tarefasController.getAllTarefas
     )
 
-    router.route('/tarefa/:idTarefa').get
+    /*router.route('/tarefa/:idTarefa').get
     (
         tarefasController.getTarefa
-    )
+    )*/
 
 }
