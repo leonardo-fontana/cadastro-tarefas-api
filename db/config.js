@@ -5,20 +5,20 @@ if(node_environment === 'development') {
 }
 
 module.exports = {
-    /*database: process.env.DB_NAME,
+    database: process.env.DB_NAME,
     username: process.env.DB_USERNAME,
     password: process.env.DB_PASSWORD,
     host: process.env.DB_HOST,
     port: process.env.DB_PORT,
     dialect: process.env.DB_DIALECT,
-    logging: false*/
+    logging: false
 
-    database: 'projeto2-listaTarefas',
+    /*database: 'projeto2-listaTarefas',
     username: 'root',
     password: '',
     host: 'localhost',
     port: '3306',
     dialect: 'mysql',
-    logging: 'false'
+    logging: 'false'*/
 
 }

@@ -30,9 +30,12 @@ const getAllTarefas = (req, res, next) => {
 }
 
 const getTarefaById = (req, res) => {
-    db.tarefa.findByPk(req.params.id)
-     .then((result) => {
-      res.status(200).send({});
+    db.tarefa.findOne({
+      where: {
+        id: req.params.id
+      }
+    }).then((result) => {
+      res.status(200).send(result);
 
     })
 }
