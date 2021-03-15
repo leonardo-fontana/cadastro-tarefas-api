@@ -13,8 +13,11 @@ if (config.use_env_variable) {
 
 }
 
-const modelUser = require('./tarefa');
-db.tarefa = modelUser(sequelize, Sequelize.DataTypes);
+const modelTarefa = require('./tarefa');
+const modelUsuario = require('./usuario');
+
+db.tarefa = modelTarefa(sequelize, Sequelize.DataTypes);
+db.usuario = modelUsuario(sequelize, Sequelize.DataTypes);
 
 db.sequelize = sequelize;
 db.Sequelize = Sequelize;

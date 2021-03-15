@@ -1,14 +1,18 @@
 const db = require('../models/index');
 
-const getAllTarefas= (req, res, next) => {
+const getMockTarefas = (req, res, next) => {
 
-    /*res.status(200).send([
+   res.status(200).send([
         {
             id: 1,
-            name: 'teste mock'
+            titulo: 'teste mock',
+            data_inicio: '01/01/2020',
+            data_fim: '01/01/2020'
         }
-    ])*/
+    ])
+}
 
+const getAllTarefas = (req, res, next) => {
     db.tarefa.findAll({})
     .then((dataFromDb) => {
 
@@ -17,9 +21,9 @@ const getAllTarefas= (req, res, next) => {
         return {
           id: item.id,
           titulo: item.titulo,
-          data_inicio: item.data_inicio
+          data_inicio: item.data_inicio,
+          data_fim: item.data_fim
         }
-
       }));
 
     })
@@ -34,6 +38,7 @@ const getTarefaById = (req, res) => {
 }
 
 module.exports = {
+    getMockTarefas,
     getAllTarefas,
     getTarefaById
 }

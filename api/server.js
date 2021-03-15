@@ -10,7 +10,7 @@ const port = process.env.PORT || 3001;
 
 router(app);
 app.listen(port, () => {
-    //console.log(`Server listening on port ${port}`);
+    console.log(`Server listening on port ${port}`);
 
 })
 

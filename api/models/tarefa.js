@@ -1,6 +1,6 @@
 module.exports = (sequelize, DataTypes) => {
-    const tarefas = sequelize.define(
-        "tarefas",
+    const tarefa = sequelize.define(
+        "tarefa",
         {
         id: {
             type: DataTypes.INTEGER,
@@ -11,6 +11,7 @@ module.exports = (sequelize, DataTypes) => {
         },
         titulo: DataTypes.TEXT,
         data_inicio: DataTypes.DATE,
+        data_fim: DataTypes.DATE,
         },
         {
             underscored: true,
@@ -18,5 +19,5 @@ module.exports = (sequelize, DataTypes) => {
             timestamps: false
         }
     );
-        return tarefas;
+        return tarefa;
 };

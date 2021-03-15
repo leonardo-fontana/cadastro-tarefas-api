@@ -11,4 +11,9 @@ module.exports = (router) => {
         tarefasController.getTarefaById
     )
 
+    router.route('/mockTarefa').get
+    (
+        tarefasController.getMockTarefas
+    )
+
 }

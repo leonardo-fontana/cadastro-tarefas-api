@@ -4,7 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "start": "node ./index.js",
+    "start": "node index.js",
     "dev": "nodemon index.js",
     "create-db": "./node_modules/.bin/sequelize db:create",
     "migrate-db": "./node_modules/.bin/sequelize db:migrate",
