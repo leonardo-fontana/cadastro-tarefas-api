@@ -1,6 +1,6 @@
 module.exports = (sequelize, DataTypes) => {
-  const usuario = sequelize.define(
-      "usuario",
+  const usuarios = sequelize.define(
+      "usuarios",
       {
       id: {
           type: DataTypes.INTEGER,
@@ -18,5 +18,13 @@ module.exports = (sequelize, DataTypes) => {
           timestamps: false
       }
   );
-      return usuario;
+
+  usuarios.associate = function (models) {
+
+    usuarios.hasMany(models.tarefas, {
+      foreignKey: 'usuario_id',
+      as: 'tarefas'
+    });
+  };
+    return usuarios;
 };

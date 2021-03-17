@@ -1,6 +1,6 @@
 module.exports = (sequelize, DataTypes) => {
-    const tarefa = sequelize.define(
-        "tarefa",
+    const tarefas = sequelize.define(
+        "tarefas",
         {
         id: {
             type: DataTypes.INTEGER,
@@ -11,13 +11,22 @@ module.exports = (sequelize, DataTypes) => {
         },
         titulo: DataTypes.TEXT,
         data_inicio: DataTypes.DATE,
-        data_fim: DataTypes.DATE,
+        data_fim: DataTypes.DATE
         },
+        
         {
             underscored: true,
             paranoid: true,
             timestamps: false
         }
     );
-        return tarefa;
+  
+    tarefas.associate = function (models) {
+        tarefas.belongsTo(models.usuarios, {
+          foreignKey: 'usuario_id',
+          as: 'usuarios'
+        });
+    };
+
+    return tarefas;
 };

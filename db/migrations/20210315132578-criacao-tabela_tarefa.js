@@ -22,11 +22,17 @@ module.exports = {
       data_fim: {
         allowNull: false,
         type: Sequelize.DATE
-      }  
-    })
+      },
+
+      usuario_id: {
+        type: Sequelize.INTEGER,
+        references: { model: 'usuarios', key: 'id' },
+        onDelete: 'CASCADE',
+      }
+    });
   },
 
-  down: async (queryInterface, Sequelize) => {
+  down: async (queryInterface) => {
     return queryInterface.dropTable('tarefas');
   }
 };

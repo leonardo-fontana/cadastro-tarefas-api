@@ -13,7 +13,7 @@ const getMockUsuario= (req, res, next) => {
 
 const getAllUsuarios = (req, res, next) => {
 
-    db.usuario.findAll({})
+    db.usuarios.findAll({})
     .then((dataFromDb) => {
 
       res.status(200).send(dataFromDb.map((item) => {
