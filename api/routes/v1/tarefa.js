@@ -11,9 +11,15 @@ module.exports = (router) => {
         tarefasController.getTarefaById
     )
 
-    router.route('/tarefa/:tarefaid/usuarios').post
+    router.route('/tarefa').post
     (
         tarefasController.createTarefa
+    )
+
+    
+    router.route('/tarefa/:id').put
+    (
+        tarefasController.updateTarefa
     )
 
     router.route('/tarefa/:id').post

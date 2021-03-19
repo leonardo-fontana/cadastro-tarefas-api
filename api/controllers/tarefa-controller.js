@@ -13,6 +13,9 @@ const getMockTarefas = (req, res, next) => {
 }
 
 const getAllTarefas = async (req, res, next) => {
+  
+  try{
+
   const result = await tarefas.findAll({});
   
   res.status(200).send(result.map(item => {
@@ -26,7 +29,11 @@ const getAllTarefas = async (req, res, next) => {
         usuario_id
       }
 
-  }) || []);  
+  }) || []); 
+  } catch (error) {
+      console.log(error)
+      res.status(500).send({ message: 'Erro interno na aplicação!' });
+  }
 }
 
 const getTarefaById = async (req, res) => {
@@ -61,15 +68,29 @@ const getTarefaById = async (req, res) => {
 }
 
 const createTarefa = async (req, res, next) => {
+
   try {
-
-
-    res.status(200)({ message: "Tarefa cadastrada com sucesso."})
-  } catch {
-    console.log(error)
-    res.status(500).send({ message: 'Erro interno na aplicação!' });
+    const post = await tarefas.create(req.body);
+    res.status(200).send({ message: "Tarefa inserida com sucesso."})
+  } catch (error) {
+     res.status(500).json({error: error.message})
   }
 }
+
+const updateTarefa = async (req, res) => {
+  try {
+    const { id } = req.params;
+    const [ updated ] = await tarefas.update(req.body, {
+      where: { id: id }
+    });
+    if (updated) {    
+      await tarefas.findOne({ where: { id: id } });
+      res.status(200).send({  message: "Tarefa atualizada com sucesso." });
+    }
+  } catch (error) {
+      res.status(500).send("Algo deu errado.");
+  }
+};
 
 const deleteTarefa = async (req, res, next) => {
   try {
@@ -81,15 +102,15 @@ const deleteTarefa = async (req, res, next) => {
     console.log(error)
     res.status(500).send({ message: 'Erro interno na aplicação!' });
   }
-  const { id } = req.params
-
-  tarefas.destroy({ where: { id: id }});
 }
+
+
 
 module.exports = {
     getMockTarefas,
     getAllTarefas,
     getTarefaById,
+    updateTarefa,
     createTarefa,
     deleteTarefa
 }
