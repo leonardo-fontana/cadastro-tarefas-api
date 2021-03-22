@@ -11,6 +11,21 @@ module.exports = (router) => {
         usuarioController.getUsuarioById
     )
 
+    router.route('/usuario').post
+    (
+        usuarioController.createUsuario
+    )
+
+    router.route('/usuario/:id').put
+    (
+        usuarioController.updateUsuario
+    )
+
+    router.route('/usuario/:id').post
+    (
+        usuarioController.deleteUsuario
+    )
+
     router.route('/mockUsuario').get
     (
         usuarioController.getMockUsuario

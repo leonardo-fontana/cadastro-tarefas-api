@@ -14,8 +14,8 @@ const getMockTarefas = (req, res, next) => {
 
 const getAllTarefas = async (req, res, next) => {
   
-  try{
-
+  try {
+ 
   const result = await tarefas.findAll({});
   
   res.status(200).send(result.map(item => {

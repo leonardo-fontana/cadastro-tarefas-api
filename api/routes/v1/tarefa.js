@@ -4,7 +4,7 @@ module.exports = (router) => {
     router.route('/tarefa').get
     (
         tarefasController.getAllTarefas
-    ),
+    )
 
     router.route('/tarefa/:id').get
     (
@@ -16,7 +16,6 @@ module.exports = (router) => {
         tarefasController.createTarefa
     )
 
-    
     router.route('/tarefa/:id').put
     (
         tarefasController.updateTarefa
@@ -31,5 +30,4 @@ module.exports = (router) => {
     (
         tarefasController.getMockTarefas
     )
-
 }

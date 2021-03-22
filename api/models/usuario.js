@@ -10,6 +10,7 @@ module.exports = (sequelize, DataTypes) => {
           allowNull: false
       },
       nome: DataTypes.TEXT,
+      sobrenome: DataTypes.TEXT,
       email: DataTypes.TEXT,
       },
       {
