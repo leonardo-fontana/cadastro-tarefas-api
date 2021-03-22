@@ -1,7 +1,5 @@
 const { tarefas, usuarios } = require("../models");
 
-const db = require('../models/index');
-
 const getMockUsuario= (req, res, next) => {
 
    res.status(200).send([
@@ -35,7 +33,6 @@ const getAllUsuarios = async (req, res, next) => {
         res.status(500).send({ message: 'Erro interno na aplicação!' });
     }
 }
-
 
 const  getUsuarioById = async (req, res) => {
   try {
