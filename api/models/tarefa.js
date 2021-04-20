@@ -10,6 +10,7 @@ module.exports = (sequelize, DataTypes) => {
             allowNull: false
         },
         titulo: DataTypes.TEXT,
+        descricao: DataTypes.TEXT,
         data_inicio: DataTypes.DATE,
         data_fim: DataTypes.DATE
         },

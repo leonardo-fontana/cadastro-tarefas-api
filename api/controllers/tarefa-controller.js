@@ -19,11 +19,12 @@ const getAllTarefas = async (req, res, next) => {
   const result = await tarefas.findAll({});
   
   res.status(200).send(result.map(item => {
-      const { id, titulo, data_inicio, data_fim, usuario_id} = item;
+      const { id, titulo,descricao, data_inicio, data_fim, usuario_id} = item;
         
       return {
         id,
         titulo,
+        descricao,
         data_inicio,
         data_fim,
         usuario_id
@@ -53,6 +54,7 @@ const getTarefaById = async (req, res) => {
     const data = {
       id: result.id,
       titulo: result.titulo,
+      descricao: result.descricao,
       data_inicio: result.data_inicio,
       data_fim: result.data_fim,
       usuarios: result.usuarios,
@@ -103,8 +105,6 @@ const deleteTarefa = async (req, res, next) => {
     res.status(500).send({ message: 'Erro interno na aplicação!' });
   }
 }
-
-
 
 module.exports = {
     getMockTarefas,

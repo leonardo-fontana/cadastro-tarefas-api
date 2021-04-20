@@ -1,4 +1,4 @@
-const { tarefas, usuarios } = require("../models");
+const { tarefas, usuarios } = require("../models"); 
 
 const getMockUsuario= (req, res, next) => {
 

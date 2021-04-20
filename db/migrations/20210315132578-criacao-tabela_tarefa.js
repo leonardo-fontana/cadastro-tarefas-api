@@ -14,6 +14,11 @@ module.exports = {
         type: Sequelize.TEXT
       },
       
+      descricao: {
+        allowNull: false,
+        type: Sequelize.TEXT
+      },
+      
       data_inicio: {
         allowNull: false,
         type: Sequelize.DATE

@@ -21,7 +21,7 @@ module.exports = (router) => {
         tarefasController.updateTarefa
     )
 
-    router.route('/tarefa/:id').post
+    router.route('/tarefa/:id').delete
     (
         tarefasController.deleteTarefa
     )
