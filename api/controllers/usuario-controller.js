@@ -1,14 +1,34 @@
-const { tarefas, usuarios } = require("../models"); 
+//const { usuarios } = require("../models"); 
+const usuarioService = require("../services/usuario-service");
 
-const getMockUsuario= (req, res, next) => {
+const autenticar = async (req, res, next) => {
 
-   res.status(200).send([
-        {
-            id: 1,
-            nome: 'Fulano de Tal',
-            email: 'fulano@ciclano.com'
-        }
-    ])
+  try {
+
+    const { usuario, senha } = req.body;
+
+    const result = await usuarioService.usuarioExiste(usuario, senha);
+
+    if (!result) {
+      return res.status(401).send({
+        mensagem: 'usuário ou senha inválidos'
+      })
+    }
+
+    var credencial = await usuarioService.criaCredencial(usuario);
+
+    return res.status(200).send(credencial);
+
+  } catch (error) {
+
+    console.log(error);
+
+    res.status(500).send({
+      mensagem: "ERROR!!",
+    });
+
+  }
+
 }
 
 const getAllUsuarios = async (req, res, next) => {
@@ -63,11 +83,34 @@ const  getUsuarioById = async (req, res) => {
 const createUsuario = async (req, res, next) => {
 
   try {
-    const post = await usuarios.create(req.body);
-    res.status(200).send({ message: "Usuário inserida com sucesso."})
+    
+    const { body } = req;
+
+    const validacaoEmail = await usuarioService.validaSeEmailJaExiste(body.email);
+
+    console.log(validacaoEmail);
+
+    if (validacaoEmail) {
+      return res.status(400).send({
+        mensagem: `"email" já cadastrado.`,
+      });
+    }
+
+    await usuarioService.criaAluno(body);
+
+    return res.status(200).send({
+      mensagem: 'cadastro realizado com sucesso',
+    });
+
   } catch (error) {
-     res.status(500).json({error: error.message})
+
+    console.log(error);
+
+    res.status(500).send({
+      mensagem: "ERROR!!",
+    });
   }
+
 }
 
 const updateUsuario = async (req, res) => {
@@ -98,7 +141,7 @@ const deleteUsuario = async (req, res, next) => {
 }
 
 module.exports = {
-    getMockUsuario,
+    autenticar,
     getAllUsuarios,
     getUsuarioById,
     createUsuario,

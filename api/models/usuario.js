@@ -10,14 +10,15 @@ module.exports = (sequelize, DataTypes) => {
           allowNull: false
       },
       nome: DataTypes.TEXT,
-      sobrenome: DataTypes.TEXT,
       email: DataTypes.TEXT,
+      tipo: DataTypes.INTEGER,
+      senha: DataTypes.TEXT,
       },
       {
           underscored: true,
           paranoid: true,
           timestamps: false
-      }
+      },
   );
 
   usuarios.associate = function (models) {

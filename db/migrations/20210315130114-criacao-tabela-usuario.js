@@ -12,13 +12,16 @@ module.exports = {
       nome: {
         allowNull: false,
         type: Sequelize.TEXT
-      },
-      sobrenome: {
+      },    
+      email: {
         allowNull: false,
         type: Sequelize.TEXT
       },
-      
-      email: {
+      tipo: {
+        allowNull: false,
+        type: Sequelize.TEXT
+      },
+      senha: {
         allowNull: false,
         type: Sequelize.TEXT
       },
