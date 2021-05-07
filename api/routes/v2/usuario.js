@@ -22,9 +22,14 @@ module.exports = (router) => {
     
     //getAll
     router.route('/usuario').get(
-        autorizar('LISTAR_CURSO'),
+        autorizar('LISTAR_USUARIOS'),
         usuarioController.getAllUsuarios
     );
+
+    router.route('/usuario/:id').get(
+      autorizar('GET_USUARIO'),
+      usuarioController.getUsuarioById
+  );
 
     //create
     router.route('/usuario').post(

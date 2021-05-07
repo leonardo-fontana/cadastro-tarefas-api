@@ -1,12 +1,9 @@
-//const { usuarios } = require("../models"); 
 const usuarioService = require("../services/usuario-service");
 
 const autenticar = async (req, res, next) => {
-
   try {
 
     const { usuario, senha } = req.body;
-
     const result = await usuarioService.usuarioExiste(usuario, senha);
 
     if (!result) {
@@ -22,7 +19,6 @@ const autenticar = async (req, res, next) => {
   } catch (error) {
 
     console.log(error);
-
     res.status(500).send({
       mensagem: "ERROR!!",
     });
@@ -32,63 +28,41 @@ const autenticar = async (req, res, next) => {
 }
 
 const getAllUsuarios = async (req, res, next) => {
-
   try 
   {
-    const result = await usuarios.findAll({});
+    const usuarios = await usuarioService.getAllUsuarios();
     
-    res.status(200).send(result.map(item => {
-        const { id, nome, sobrenome, email} = item;
-          
-        return {
-          id,
-          nome,
-          sobrenome,
-          email,
-        }
-  
-    }) || []); 
+    return res.status(200).send(usuarios);
+
     } catch (error) {
         console.log(error)
         res.status(500).send({ message: 'Erro interno na aplicação!' });
     }
 }
 
-const  getUsuarioById = async (req, res) => {
+const getUsuarioById = async (req, res, next) => {
   try {
-    const { id } = req.params
+    const { params } = req;
 
-    const result = await usuarios.findOne({
-      where: {
-        id: id
-      }
-    });
+    const user = await usuarioService.getUsuarioById(params.id);
 
-    const data = {
-      id: result.id,
-      nome: result.nome,
-      sobrenome: result.sobrenome,
-      email: result.email
-    }
-
-    res.status(200).send(data);
+    return res.status(200).send(user);
 
   } catch (error) {
-    console.log(error)
-    res.status(500).send({ message: 'Erro interno na aplicação!' });
+
+    console.log(error);
+    return res.status(500).send({
+      mensagem: "internal server error",
+    });
 
   }
 }
 
 const createUsuario = async (req, res, next) => {
-
-  try {
-    
+  try {  
     const { body } = req;
 
     const validacaoEmail = await usuarioService.validaSeEmailJaExiste(body.email);
-
-    console.log(validacaoEmail);
 
     if (validacaoEmail) {
       return res.status(400).send({
@@ -105,7 +79,6 @@ const createUsuario = async (req, res, next) => {
   } catch (error) {
 
     console.log(error);
-
     res.status(500).send({
       mensagem: "ERROR!!",
     });

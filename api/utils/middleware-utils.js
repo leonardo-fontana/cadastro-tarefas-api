@@ -2,23 +2,15 @@ const Joi = require('joi');
 const jwt = require('jsonwebtoken');
 const usuarioService = require('../services/usuario-service')
 
-// const perfis = {
-//   '1': [ // gestor
-//     'CRIACAO_CURSO',
-//     'ALTERACAO_CURSO',
-//   ],
-//   '2': [ // aluno
-//     'ALTERACAO_ALUNO',
-//   ]
-// }
-
 const perfis = [
   {
     id: '1',
     funcionalidades: [
-      'LISTAR_CURSO',
-      'CRIACAO_CURSO',
-      'ALTERACAO_CURSO',
+      'LISTAR_TAREFAS',
+      'CRIACAO_TAREFA',
+      'ALTERACAO_TAREFA',
+      'LISTAR_USUARIOS',
+      'GET_USUARIO'
     ]
   },
   {

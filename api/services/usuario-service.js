@@ -41,7 +41,7 @@ const criaCredencial = async (usuarioEmail) => {
 
     const credencial = {
       token: jwt.sign({ email: usuario.email }, process.env.JWT_KEY, {
-        expiresIn: `${process.env.JWT_VALID_TIME}ms`,
+        expiresIn: `1500s`,
       }),
       usuario: {
         nome,
@@ -104,47 +104,42 @@ const alteraAluno = async (id, model) => {
   )
 }
 
-const listarAlunos = async () => {
+const getAllUsuarios = async () => {
 
-  const reuslFromDB = await usuarios.findAll({
-    where: {
-      tipo: '2'
-    },
-    include: [
-      {
-        model: inscricoes,
-        as: 'inscricoes',
-        include: [
-          {
-            model: cursos,
-            as: 'curso'
-          }
-        ]
-      }
-    ],
-  });
+  const resultadoDB = await usuarios.findAll({})
 
-  return reuslFromDB.map(item => {
+  return resultadoDB.map(item => {
 
-    const { id, email, nome, tipo, inscricoes } = item;
+    const { id, email, nome, tipo } = item;
 
     return {
       id,
       nome,
       email,
-      tipo,
-      inscricoes: inscricoes.reduce((acc, item) => {
-        const { id, curso } = item;
-        const novoItem = { id, curso: curso.name, };
-        return [...acc, novoItem]
-      }, []),
-
+      tipo
     }
+  });
+}
 
+const getUsuarioById = async (idUsuario) => {
 
+  const itemDB = await usuarios.findOne({
+    where: {
+      id: idUsuario
+    },
   });
 
+  const { id, nome, email,tipo } = itemDB;
+
+  return {
+    id,
+    nome,
+    email,
+    tipo
+  }
+
 }
+
 
 module.exports = {
   usuarioExiste,
@@ -153,5 +148,6 @@ module.exports = {
   validaSeEmailJaExiste,
   buscarPorEmail,
   alteraAluno,
-  listarAlunos
+  getAllUsuarios,
+  getUsuarioById
 }
