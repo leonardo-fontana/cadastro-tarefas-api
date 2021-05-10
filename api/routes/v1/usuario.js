@@ -25,10 +25,4 @@ module.exports = (router) => {
     (
         usuarioController.deleteUsuario
     )
-
-    router.route('/mockUsuario').get
-    (
-        usuarioController.getMockUsuario
-    )
-
 }

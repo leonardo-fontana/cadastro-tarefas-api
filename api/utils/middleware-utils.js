@@ -10,13 +10,17 @@ const perfis = [
       'CRIACAO_TAREFA',
       'ALTERACAO_TAREFA',
       'LISTAR_USUARIOS',
-      'GET_USUARIO'
+      'GET_USUARIO',
+      'GET_TAREFA_BY_ID'
     ]
   },
   {
     id: '2',
     funcionalidades: [
       'ALTERACAO_ALUNO',
+      'GET_TAREFA_BY_ID',
+      'CRIACAO_TAREFA',
+      'LISTAR_TAREFAS_FROM_USER'
     ]
   },
 ];
@@ -25,7 +29,6 @@ const buscarPefilPorId = (perfilId) => {
   const result = perfis.find(item => Number(item.id) === Number(perfilId));
   return result;
 }
-
 
 const criarDetalhes = (error) => {
 
@@ -65,9 +68,7 @@ exports.validarDTO = (type, params) => {
       console.log(error);
 
     }
-
   }
-
 }
 
 exports.autorizar = (rota = '*') => {
@@ -97,7 +98,6 @@ exports.autorizar = (rota = '*') => {
             mensagem: "usuário não autorizado."
           });
         }
-
       }
 
       next();

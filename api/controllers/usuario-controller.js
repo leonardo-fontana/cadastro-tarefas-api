@@ -24,7 +24,6 @@ const autenticar = async (req, res, next) => {
     });
 
   }
-
 }
 
 const getAllUsuarios = async (req, res, next) => {

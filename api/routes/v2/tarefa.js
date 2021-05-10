@@ -11,7 +11,7 @@ module.exports = (router) => {
 
     router.route('/tarefa/:id').get
     (
-        autorizar(),
+        autorizar('GET_TAREFA_BY_ID'),
         tarefasController.getTarefaById
     )
 
@@ -41,10 +41,5 @@ module.exports = (router) => {
     (
         autorizar(),
         tarefasController.deleteTarefa
-    )
-
-    router.route('/mockTarefa').get 
-    (
-        tarefasController.getMockTarefas
     )
 }
