@@ -25,9 +25,4 @@ module.exports = (router) => {
     (
         tarefasController.deleteTarefa
     )
-
-    router.route('/mockTarefa').get 
-    (
-        tarefasController.getMockTarefas
-    )
 }

@@ -56,18 +56,13 @@ const createTarefa = async (req, res, next) => {
 }
 
 const updateTarefa = async (req, res) => {
-  try {
-    const { id } = req.params;
-    const [ updated ] = await tarefas.update(req.body, {
-      where: { id: id }
-    });
-    if (updated) {    
-      await tarefas.findOne({ where: { id: id } });
-      res.status(200).send({  message: "Tarefa atualizada com sucesso." });
-    }
-  } catch (error) {
-      res.status(500).send("Algo deu errado.");
-  }
+  
+  await tarefaService.updateTarefa(params.id, body);
+
+  return res.status(200).send({
+    mensagem: 'Alteração realizada com sucesso',
+  });
+
 };
 
 const deleteTarefa = async (req, res, next) => {

@@ -25,6 +25,7 @@ const getAllTarefasFromUser = async () => {
     const {token} = req.headers;
     var decode1 = jwt.decode(token);
     console.log(decode1)
+
     const resultadoDB = await tarefas.findAll({})
   
     return resultadoDB.map(item => {
@@ -54,7 +55,7 @@ const getTarefaById = async (idTarefa) => {
       },
   });
 
-  const { id, titulo,descricao,data_inicio,data_fim,usuario_id } = itemDB;
+  const { id, titulo, descricao, data_inicio ,data_fim ,usuario_id } = itemDB;
 
   return {
     id,
@@ -81,9 +82,24 @@ const createTarefa = async (model) => {
     return tarefas.create(tarefaModel);
 }
 
+const updateTarefa = async (id, model) => {
+    return tarefas.update(
+      {
+        titulo: model.titulo,
+        descricao: model.descricao,
+        data_inicio: model.data_fim,
+        data_fim: model.data_fim,
+      },
+      {
+        where: { id: id }
+      }
+    )
+  }
+
 module.exports = {
   getAllTarefasFromUser,
   getAllTarefas,
   getTarefaById,
-  createTarefa
+  createTarefa,
+  updateTarefa
 }

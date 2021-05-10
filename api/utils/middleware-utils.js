@@ -20,7 +20,9 @@ const perfis = [
       'ALTERACAO_ALUNO',
       'GET_TAREFA_BY_ID',
       'CRIACAO_TAREFA',
-      'LISTAR_TAREFAS_FROM_USER'
+      'LISTAR_TAREFAS_FROM_USER',
+      'ATUALIZAR_TAREFA',
+      'DELETAR_TAREFA'
     ]
   },
 ];
@@ -35,7 +37,6 @@ const criarDetalhes = (error) => {
   return error.details.reduce((acc, item) => {
 
     console.log(acc);
-
     console.log(item);
 
     return [
@@ -43,7 +44,6 @@ const criarDetalhes = (error) => {
     ];
 
   }, []);
-
 }
 
 exports.validarDTO = (type, params) => {
@@ -64,9 +64,7 @@ exports.validarDTO = (type, params) => {
       }) : next();
 
     } catch (error) {
-
       console.log(error);
-
     }
   }
 }

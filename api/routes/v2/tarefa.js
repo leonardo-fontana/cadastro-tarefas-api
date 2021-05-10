@@ -33,13 +33,13 @@ module.exports = (router) => {
 
     router.route('/tarefa/:id').put
     (
-        autorizar(),
+        autorizar('ATUALIZAR_TAREFA'),
         tarefasController.updateTarefa
     )
 
     router.route('/tarefa/:id').delete
     (
-        autorizar(),
+        autorizar('DELETAR_TAREFA'),
         tarefasController.deleteTarefa
     )
 }
