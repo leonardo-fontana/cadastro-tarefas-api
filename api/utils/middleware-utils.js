@@ -11,16 +11,16 @@ const perfis = [
       'ALTERACAO_TAREFA',
       'LISTAR_USUARIOS',
       'GET_USUARIO',
-      'GET_TAREFA_BY_ID'
+      'GET_TAREFA_BY_ID',
+      'LISTAR_TAREFAS_USUARIO'
     ]
   },
   {
     id: '2',
-    funcionalidades: [
-      'ALTERACAO_ALUNO',
+    funcionalidades: [,
       'GET_TAREFA_BY_ID',
       'CRIACAO_TAREFA',
-      'LISTAR_TAREFAS_FROM_USER',
+      'LISTAR_TAREFAS_USUARIO',
       'ATUALIZAR_TAREFA',
       'DELETAR_TAREFA'
     ]

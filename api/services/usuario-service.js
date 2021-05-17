@@ -37,8 +37,6 @@ const criaCredencial = async (usuarioEmail) => {
 
     const { nome, email, tipo } = usuario;
 
-    // console.log('usuari$$$$$$o', usuario);
-
     const credencial = {
       token: jwt.sign({ email: usuario.email }, process.env.JWT_KEY, {
         expiresIn: `1500s`,
@@ -71,32 +69,29 @@ const validaSeEmailJaExiste = async (email, id = 0) => {
       return false;
 
     return true;
-    
+
   } else {
     return false;
-
   }
 }
 
-const criaAluno = async (model) => {
+const createUsuario= async (model) => {
 
-  const modelParaCadastro = {
+  const usuarioModel = {
     nome: model.nome,
     email: model.email,
     tipo: '2',
     senha: criarHash(model.senha),
   };
 
-  return usuarios.create(modelParaCadastro);
-
+  return usuarios.create(usuarioModel);
 }
 
-const alteraAluno = async (id, model) => {
+const updateUsuario = async (id, model) => {
   return usuarios.update(
     {
       nome: model.nome,
       email: model.email,
-      datanascimento: model.datanascimento,
     },
     {
       where: { id: id }
@@ -137,17 +132,17 @@ const getUsuarioById = async (idUsuario) => {
     email,
     tipo
   }
-
 }
+
 
 
 module.exports = {
   usuarioExiste,
-  criaAluno,
   criaCredencial,
   validaSeEmailJaExiste,
   buscarPorEmail,
-  alteraAluno,
+  createUsuario,
+  updateUsuario,
   getAllUsuarios,
   getUsuarioById
 }

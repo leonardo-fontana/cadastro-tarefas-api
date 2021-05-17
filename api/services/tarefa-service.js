@@ -20,14 +20,18 @@ const getAllTarefas = async () => {
   });
 }
 
-const getAllTarefasFromUser = async () => {
-    const result = await tarefas.findAll({});
-    const {token} = req.headers;
-    var decode1 = jwt.decode(token);
-    console.log(decode1)
+const getAllTarefasFromUsuario = async (idUsuario) => {
+    //const result = await tarefas.findAll({});
+    //const {token} = req.headers;
+    //var decode1 = jwt.decode(token);
+    //console.log(decode1)
 
-    const resultadoDB = await tarefas.findAll({})
-  
+    const resultadoDB = await tarefas.findAll({
+      where: {
+        usuario_id: idUsuario
+      },
+    })
+
     return resultadoDB.map(item => {
   
       const { id, titulo,descricao, data_inicio, data_fim, usuario_id } = item;
@@ -66,7 +70,6 @@ const getTarefaById = async (idTarefa) => {
     usuario_id,
     usuarios
   }
-
 }
 
 const createTarefa = async (model) => {
@@ -97,7 +100,7 @@ const updateTarefa = async (id, model) => {
   }
 
 module.exports = {
-  getAllTarefasFromUser,
+  getAllTarefasFromUsuario,
   getAllTarefas,
   getTarefaById,
   createTarefa,

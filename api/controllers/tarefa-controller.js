@@ -16,6 +16,22 @@ const getAllTarefas = async (req, res, next) => {
     }
 }
 
+const getAllTarefasFromUsuario = async (req, res, next) => {
+
+  try 
+  {
+    const { params } = req;
+
+    const tarefas = await tarefaService.getAllTarefasFromUsuario(params.id_usuario);
+    
+    return res.status(200).send(tarefas);
+
+    } catch (error) {
+        console.log(error)
+        res.status(500).send({ message: 'Erro interno na aplicação!' });
+    }
+}
+
 const getTarefaById = async (req, res) => {
   try {
     const { params } = req;
@@ -82,5 +98,6 @@ module.exports = {
     getTarefaById,
     updateTarefa,
     createTarefa,
-    deleteTarefa
+    deleteTarefa,
+    getAllTarefasFromUsuario
 }

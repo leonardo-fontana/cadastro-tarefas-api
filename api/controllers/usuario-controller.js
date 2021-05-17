@@ -20,7 +20,7 @@ const autenticar = async (req, res, next) => {
 
     console.log(error);
     res.status(500).send({
-      mensagem: "ERROR!!",
+      mensagem: "Erro interno na aplicação!!",
     });
 
   }
@@ -65,14 +65,14 @@ const createUsuario = async (req, res, next) => {
 
     if (validacaoEmail) {
       return res.status(400).send({
-        mensagem: `"email" já cadastrado.`,
+        mensagem: `"Email" já cadastrado.`,
       });
     }
 
-    await usuarioService.criaAluno(body);
+    await usuarioService.createUsuario(body);
 
     return res.status(200).send({
-      mensagem: 'cadastro realizado com sucesso',
+      mensagem: "Usuário " +body.email+ " cadastro realizado com sucesso",
     });
 
   } catch (error) {
